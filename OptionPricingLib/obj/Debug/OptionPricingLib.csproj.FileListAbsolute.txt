@@ -1,0 +1,16 @@
+D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\bin\Debug\Accord.dll.config
+D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\bin\Debug\OptionPricingLib.dll
+D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\bin\Debug\OptionPricingLib.pdb
+D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\bin\Debug\Accord.dll
+D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\bin\Debug\Accord.Math.Core.dll
+D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\bin\Debug\Accord.Math.dll
+D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\bin\Debug\Accord.Statistics.dll
+D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\bin\Debug\MathNet.Numerics.dll
+D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\bin\Debug\Accord.xml
+D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\bin\Debug\Accord.Math.xml
+D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\bin\Debug\Accord.Math.Core.xml
+D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\bin\Debug\Accord.Statistics.xml
+D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\bin\Debug\MathNet.Numerics.xml
+D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\obj\Debug\OptionPricingLib.dll
+D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\obj\Debug\OptionPricingLib.pdb
+D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\obj\Debug\OptionPricingLib.csprojResolveAssemblyReference.cache

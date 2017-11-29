@@ -1,0 +1,8 @@
+D:\csproject\DotNetOptionPricingLib\DotNetOptionPricingLib\bin\Debug\DotNetOptionPricingLib-AddIn.dna
+D:\csproject\DotNetOptionPricingLib\DotNetOptionPricingLib\bin\Debug\DotNetOptionPricingLib.dll
+D:\csproject\DotNetOptionPricingLib\DotNetOptionPricingLib\bin\Debug\DotNetOptionPricingLib.pdb
+D:\csproject\DotNetOptionPricingLib\DotNetOptionPricingLib\bin\Debug\MathNet.Numerics.dll
+D:\csproject\DotNetOptionPricingLib\DotNetOptionPricingLib\bin\Debug\MathNet.Numerics.xml
+D:\csproject\DotNetOptionPricingLib\DotNetOptionPricingLib\obj\Debug\DotNetOptionPricingLib.dll
+D:\csproject\DotNetOptionPricingLib\DotNetOptionPricingLib\obj\Debug\DotNetOptionPricingLib.pdb
+D:\csproject\DotNetOptionPricingLib\DotNetOptionPricingLib\obj\Debug\DotNetOptionPricingLib.csprojResolveAssemblyReference.cache

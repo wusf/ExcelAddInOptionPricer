@@ -25,7 +25,6 @@ namespace OptionPricingLib
 
             if (cpflg.Equals("c"))
             {
-
                 price = (Q2 * S2 * Exp((b2 - r) * T) + X * Exp(-r * T)) * (S * CND(d1) - CND(d2));
             }
             else
@@ -35,13 +34,22 @@ namespace OptionPricingLib
                 return price;               
         }
 
-        public static double fdaDelta1(cpflg, s1, s2, Q1,Q2,X,Task,ref,b1,b2,v1,v2,rho,ds)
+        public static double fdaDelta1(string cpflg, double S1, double S2, double Q1, double Q2, double X, double T,
+                double r, double b1, double b2, double v1, double v2, double rho, double dS)
         {
-            pricer(cpflg, S1 + dS, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho) - pricer(cpflg, S1 - dS, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)) / (2 * dS)
+            double result = double.NaN;
+            result = pricer(cpflg, S1 + dS, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho) - pricer(cpflg, S1 - dS, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)) / (2 * dS);
+            return result;
         }
 
-     ElseIf OutPutFlag = "d2" Then 'Delta S2
-         ESpreadApproximation = (SpreadApproximation(CallPutFlag, S1, S2 + dS, Q1, Q2, X, T, r, b1, b2, v1, v2, rho) - SpreadApproximation(CallPutFlag, S1, S2 - dS, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)) / (2 * dS)
+        public static double fdaDelta2(string cpflg, double S1, double S2, double Q1, double Q2, double X, double T,
+        double r, double b1, double b2, double v1, double v2, double rho, double dS)
+        {
+            double result = double.NaN;
+            result = pricer(cpflg, S1, S2 + dS, Q1, Q2, X, T, r, b1, b2, v1, v2, rho) - pricer(cpflg, S1, S2 - dS, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)) / (2 * dS);
+            return result;
+        }
+
     ElseIf OutPutFlag = "e1" Then 'Elasticity S1
          ESpreadApproximation = (SpreadApproximation(CallPutFlag, S1 + dS, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho) - SpreadApproximation(CallPutFlag, S1 - dS, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)) / (2 * dS) * S1 / SpreadApproximation(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)
     ElseIf OutPutFlag = "e2" Then 'Elasticity S2

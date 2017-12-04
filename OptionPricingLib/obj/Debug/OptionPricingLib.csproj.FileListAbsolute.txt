@@ -13,4 +13,3 @@ D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\bin\Debug\Accord.St
 D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\bin\Debug\MathNet.Numerics.xml
 D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\obj\Debug\OptionPricingLib.dll
 D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\obj\Debug\OptionPricingLib.pdb
-D:\csproject\ExcelUDFOptionPricingFunctions\OptionPricingLib\obj\Debug\OptionPricingLib.csprojResolveAssemblyReference.cache

@@ -57,6 +57,7 @@
     <Compile Include="BSImpVol.cs" />
     <Compile Include="CallPutSpreadBSMethod.cs" />
     <Compile Include="CashOrNothingAnalyticMethod.cs" />
+    <Compile Include="SpreadOptionApprox.cs" />
     <Compile Include="TestBOSFMC.cs" />
     <Compile Include="Flag.cs" />
     <Compile Include="OneTouchDoubleBarrierBinaryAnalyticMethod.cs" />
@@ -82,11 +83,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna.xll" "$(TargetDir)ExcelUDFOptionPricingFunctions-AddIn.xll*" /C /Y
-xcopy "$(TargetDir)ExcelUDFOptionPricingFunctions-AddIn.dna*" "$(TargetDir)ExcelUDFOptionPricingFunctions-AddIn64.dna*" /C /Y
-xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna64.xll" "$(TargetDir)ExcelUDFOptionPricingFunctions-AddIn64.xll*" /C /Y
-"$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)ExcelUDFOptionPricingFunctions-AddIn.dna" /Y
-"$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)ExcelUDFOptionPricingFunctions-AddIn64.dna" /Y</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Accord.3.3.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.3.0\build\Accord.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

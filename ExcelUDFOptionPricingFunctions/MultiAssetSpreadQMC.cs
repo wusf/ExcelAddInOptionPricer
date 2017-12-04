@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ExcelDna.Integration;
 using OPLib = OptionPricingLib;
 
-namespace ExcelUDFOptionPricingFunctions
+namespace CsOptionPricerAddIn
 {
     public class MultiAssetSpreadQMC
     {

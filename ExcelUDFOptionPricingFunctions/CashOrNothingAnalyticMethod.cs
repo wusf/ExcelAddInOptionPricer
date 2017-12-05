@@ -11,7 +11,7 @@ namespace ExcelUDFOptionPricingFunctions
     public class CashOrNothingAnalyticMethod
     {
         [ExcelFunction(Description = "Returns vanilla option price and greeks through Black-Sholes-Merton method")]
-        public static object dnetCashOrNothingNGreeks([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
+        public static object csCashOrNothingNGreeks([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
                                                [ExcelArgument(Name = "CallPutFlag", Description = Flag.VanillaStyle)] string CallPutFlag,
                                                [ExcelArgument(Name = "S", Description = "Spot price")] double S,
                                                [ExcelArgument(Name = "x", Description = "Strike price")] double x,

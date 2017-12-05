@@ -12,12 +12,12 @@ namespace ExcelUDFOptionPricingFunctions
     {
         public static object GetVersion()
         {
-            string ver = "v 2017-03-24";
+            string ver = "v 2017-15-05";
             return ver;
         }
         public static object GetUpdateInfo()
         {
-            string info = "Add ImpVol";
+            string info = "1 Add spread option approximation method; 2 Change function names from dnet... to cs...";
             return info;
         }
 

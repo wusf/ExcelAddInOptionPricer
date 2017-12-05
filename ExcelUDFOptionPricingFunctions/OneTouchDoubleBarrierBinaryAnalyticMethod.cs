@@ -12,7 +12,7 @@ namespace ExcelUDFOptionPricingFunctions
     public class OneTouchDoubleBarrierBinaryAnalyticMethod
     {
         [ExcelFunction(Description = "Returns standard barrier option price and greeks through analytic method")]
-        public static object dnetOneTouchDoubleBarrierBinaryNGreeks([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
+        public static object csOneTouchDoubleBarrierBinaryNGreeks([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
                                               [ExcelArgument(Name = "TypeFlag", Description = Flag.OneTouchDoubleBarrierBinaryStyle)] string TypeFlag,
                                               [ExcelArgument(Name = "S", Description = "Spot price")] double S,
                                               [ExcelArgument(Name = "L", Description = "Lower barrier")] double L,

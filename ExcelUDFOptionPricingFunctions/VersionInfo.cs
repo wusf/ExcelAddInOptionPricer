@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 using ExcelDna.Integration;
 using OPLib = OptionPricingLib;
 
-namespace CsOptionPricerAddIn
+namespace ExcelUDFOptionPricingFunctions
 {
     public class VersionInfo
     {
         public static object GetVersion()
         {
-            string ver = "v 2017-12-4";
+            string ver = "v 2017-03-24";
             return ver;
         }
         public static object GetUpdateInfo()
         {
-            string info = "1 Add spread option approx; 2 Change function name prefix; 3 Change package name";
+            string info = "Add ImpVol";
             return info;
         }
 

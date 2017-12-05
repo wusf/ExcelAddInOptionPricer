@@ -7,7 +7,7 @@ using ExcelDna.Integration;
 using OPLib = OptionPricingLib;
 
 
-namespace CsOptionPricerAddIn
+namespace ExcelUDFOptionPricingFunctions
 {
     public class OneTouchDoubleBarrierBinaryAnalyticMethod
     {

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csOptionPricerAddIn", "ExcelUDFOptionPricingFunctions\csOptionPricerAddIn.csproj", "{E8D0380B-F24E-4F99-BE5D-DC365C19D44D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelUDFOptionPricingFunctions", "ExcelUDFOptionPricingFunctions\ExcelUDFOptionPricingFunctions.csproj", "{E8D0380B-F24E-4F99-BE5D-DC365C19D44D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptionPricingLib", "OptionPricingLib\OptionPricingLib.csproj", "{0341F77D-9C9D-4030-B75A-F293A484AA0C}"
 EndProject

@@ -11,7 +11,7 @@ namespace ExcelUDFOptionPricingFunctions
     public class MultiAssetSpreadQMC
     {
         [ExcelFunction(Description = "Returns multi-asset spread option price and greeks through Quasi Monte-Carlo method")]
-        public static object csMultiAssetSpreadQMC([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
+        public static object CsMultiAssetSpreadQMC([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
                                [ExcelArgument(Name = "CallPutFlag", Description = Flag.VanillaStyle)] string CallPutFlag,
                                [ExcelArgument(Name = "Wgt", Description = "Weights")] double[] Wgt,
                                [ExcelArgument(Name = "S", Description = "Spot price array")] double[] S,

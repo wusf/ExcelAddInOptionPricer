@@ -11,7 +11,7 @@ namespace ExcelUDFOptionPricingFunctions
     public class BSAmericanApproxMethod
     {
         [ExcelFunction(Description = "Returns Ameican option price and greeks through BS approximation method")]
-        public static object csGBSAmericanApproxNGreeks([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
+        public static object CsGBSAmericanApproxNGreeks([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
                                        [ExcelArgument(Name = "CallPutFlag", Description = Flag.VanillaStyle)] string CallPutFlag,
                                        [ExcelArgument(Name = "S", Description = "Spot price")] double S,
                                        [ExcelArgument(Name = "X", Description = "Strike price")] double X,

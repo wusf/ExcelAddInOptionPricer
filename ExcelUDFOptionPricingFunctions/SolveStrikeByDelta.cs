@@ -11,7 +11,7 @@ namespace ExcelUDFOptionPricingFunctions
     public class SolveStrikeByDelta
     {
         [ExcelFunction(Description = "Returns multi-asset spread option price and greeks through Quasi Monte-Carlo method")]
-        public static object dnetSolveStrikeByDelta(
+        public static object csSolveStrikeByDelta(
                               [ExcelArgument(Name = "CallPutFlag", Description = Flag.VanillaStyle)] string CallPutFlag,
                               [ExcelArgument(Name = "S", Description = "Underlying price")] double S,
                               [ExcelArgument(Name = "Delta", Description = "Target delta")] double delta,

@@ -11,7 +11,7 @@ namespace ExcelUDFOptionPricingFunctions
     public class CallPutSpreadBSMethod
     {
         [ExcelFunction(Description = "Returns vanilla option price and greeks through Black-Sholes-Merton method")]
-        public static object dnetCallPutSpreadNGreeks([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
+        public static object csCallPutSpreadNGreeks([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
                                                [ExcelArgument(Name = "CallPutFlag", Description = Flag.VanillaStyle)] string CallPutFlag,
                                                [ExcelArgument(Name = "S", Description = "Spot price")] double S,
                                                [ExcelArgument(Name = "X1", Description = "Strike price 1, X2>=X1")] double X1,

@@ -11,7 +11,7 @@ namespace ExcelUDFOptionPricingFunctions
     public class BSImpVol
     {
         [ExcelFunction(Description = "Returns ImpVol Bisec Method")]
-        public static object dnetImpVolBisec(  [ExcelArgument(Name = "CallPutFlag", Description = Flag.VanillaStyle)] string CallPutFlag,
+        public static object CsImpVolBisec(  [ExcelArgument(Name = "CallPutFlag", Description = Flag.VanillaStyle)] string CallPutFlag,
                                                [ExcelArgument(Name = "S", Description = "Spot price")] double S,
                                                [ExcelArgument(Name = "X", Description = "Strike price")] double X,
                                                [ExcelArgument(Name = "T", Description = "Days to expiration")] double T,
@@ -25,7 +25,7 @@ namespace ExcelUDFOptionPricingFunctions
         }
 
         [ExcelFunction(Description = "Returns ImpVol Newton Ralph")]
-        public static object dnetImpVolNR([ExcelArgument(Name = "CallPutFlag", Description = Flag.VanillaStyle)] string CallPutFlag,
+        public static object CsImpVolNR([ExcelArgument(Name = "CallPutFlag", Description = Flag.VanillaStyle)] string CallPutFlag,
                                        [ExcelArgument(Name = "S", Description = "Spot price")] double S,
                                        [ExcelArgument(Name = "X", Description = "Strike price")] double X,
                                        [ExcelArgument(Name = "T", Description = "Days to expiration")] double T,

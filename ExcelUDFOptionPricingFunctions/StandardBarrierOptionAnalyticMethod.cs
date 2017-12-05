@@ -12,7 +12,7 @@ namespace ExcelUDFOptionPricingFunctions
     public class StandardBarrierOptionAnalyticMethod
     {
         [ExcelFunction(Description = "Returns standard barrier option price and greeks through analytic method")]
-        public static object csStandardBarrierNGreeks([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
+        public static object CsStandardBarrierNGreeks([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
                                                [ExcelArgument(Name = "TypeFlag", Description = Flag.StandardBarrierStyle)] string TypeFlag,
                                                [ExcelArgument(Name = "S", Description = "Spot price")] double S,
                                                [ExcelArgument(Name = "X", Description = "Strike price")] double X,
@@ -45,7 +45,7 @@ namespace ExcelUDFOptionPricingFunctions
             }
             else if ((OutInFlag.Equals("di") && S <= H) || (OutInFlag.Equals("ui") && S >= H))
             {
-                result = (double)BlackScholesPricer.csGBlackScholesNGreeks(OutPutFlag, CallPutFlag, S, X, T, r, b, v, ds);
+                result = (double)BlackScholesPricer.CsGBlackScholesNGreeks(OutPutFlag, CallPutFlag, S, X, T, r, b, v, ds);
                 return result;
             }
            

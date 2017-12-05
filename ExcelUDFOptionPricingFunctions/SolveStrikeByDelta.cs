@@ -8,7 +8,7 @@ using OPLib = OptionPricingLib;
 
 namespace ExcelUDFOptionPricingFunctions
 {
-    public class SolveStrikeByDelta
+    public class CsSolveStrikeByDelta
     {
         [ExcelFunction(Description = "Returns multi-asset spread option price and greeks through Quasi Monte-Carlo method")]
         public static object csSolveStrikeByDelta(

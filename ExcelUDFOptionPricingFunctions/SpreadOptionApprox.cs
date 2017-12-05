@@ -11,7 +11,7 @@ namespace ExcelUDFOptionPricingFunctions
     public class SpreadOptionApprox
     {
         [ExcelFunction(Description = "Returns two assets spread option price and greeks")]
-        public static object csSpreadOptionApprox([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
+        public static object CsSpreadOptionApprox([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
                                                [ExcelArgument(Name = "CallPutFlag", Description = Flag.VanillaStyle)] string CallPutFlag,
                                                [ExcelArgument(Name = "S1", Description = "Spot price of asset 1")] double S1,
                                                [ExcelArgument(Name = "S2", Description = "Spot price of asset 2")] double S2,

@@ -27,7 +27,6 @@ D:\MyProjects\CSProjects\ExcelAddInOptionPricer\OptionPricingLib\bin\Debug\Accor
 D:\MyProjects\CSProjects\ExcelAddInOptionPricer\OptionPricingLib\bin\Debug\Accord.Math.Core.xml
 D:\MyProjects\CSProjects\ExcelAddInOptionPricer\OptionPricingLib\bin\Debug\Accord.Statistics.xml
 D:\MyProjects\CSProjects\ExcelAddInOptionPricer\OptionPricingLib\bin\Debug\MathNet.Numerics.xml
-D:\MyProjects\CSProjects\ExcelAddInOptionPricer\OptionPricingLib\obj\Debug\OptionPricingLib.csprojResolveAssemblyReference.cache
 D:\MyProjects\CSProjects\ExcelAddInOptionPricer\OptionPricingLib\obj\Debug\OptionPricingLib.csproj.CoreCompileInputs.cache
 D:\MyProjects\CSProjects\ExcelAddInOptionPricer\OptionPricingLib\obj\Debug\OptionPricingLib.dll
 D:\MyProjects\CSProjects\ExcelAddInOptionPricer\OptionPricingLib\obj\Debug\OptionPricingLib.pdb

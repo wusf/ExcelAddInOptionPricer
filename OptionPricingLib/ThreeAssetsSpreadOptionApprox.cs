@@ -9,34 +9,44 @@ namespace OptionPricingLib
 {
     public class ThreeAssetsSpreadOptionApprox
     {
-        public static double pricer(string cpflg, double S1, double S2, double S3, double Q1, double Q2, double Q3, double X, double T,
+        public static double Pricer(string cpflg, double S1, double S2, double S3, double Q1, double Q2, double Q3, double X, double T,
                 double r, double b1, double b2, double b3, double v1, double v2, double v3, double rho1, double rho2, double rho3)
         {
             double F1, F2, F3, LogF;
-            double a, b2, b3;
             double temp1, temp2, temp3;
             double sigma;
             double S;
-            double d1, d2, d3 ,d4;
+            double d1, d2, d3, d4;
             double price = double.NaN;
 
-            F1 = Q1 * S1;
-            F2 = Q2 * S2;
-            F3 = Q3 * S3;
+            F1 = Q1 * S1 * Exp(b1 - r) * T;
+            F2 = Q2 * S2 * Exp(b2 - r) * T;
+            F3 = Q3 * S3 * Exp(b3 - r) * T;
 
-            a = F2 + F3 + X;
-            b2 = F2 / a;
-            b3 = F3 / a;
-            temp1 = v1 * v1 + b2 * b2 * v2 * v2 + b3 * b3 * v3 * v3;
-            temp2 = b2 * v1 * v2 * rho1 + b3 * v1 * v3 * rho2 - b2 * b3 * v2 * v3 * rho3;
-            temp3 = 0.5 * (b2 * b2 * v2 * v2 + b3 * b3 * v3 * v3 - v1 * v1);
+            d1 = F2 + F3 + X * Exp(-r) * T;
+            d2 = F2 / d1;
+            d3 = F3 / d1;
+            temp1 = v1 * v1 + d2 * d2 * v2 * v2 + d3 * d3 * v3 * v3;
+            temp2 = d2 * v1 * v2 * rho1 + d3 * v1 * v3 * rho2 - d2 * d3 * v2 * v3 * rho3;
+            temp3 = 0.5 * (d2 * d2 * v2 * v2 + d3 * d3 * v3 * v3 - v1 * v1);
             sigma = Sqr(temp1 - 2 * temp2);
-            LogF = Math.Log(F1 / a);
+            LogF = Math.Log(F1 / d1);
             d1 = (LogF + (0.5 * temp1 - temp2) * T) / (sigma * Sqr(T));
-            d2 = (LogF + (temp3 - b2 * v2*v2 + b2 * b3 * v2 * v3 * rho3 - b3 * v2 * v3 * rho3 + v1 * v2 * rho1) * T) / (sigma * Sqr(T));
-            d3 = (LogF + (temp3 - b3 * v3*v3 + b2 * b3 * v2 * v3 * rho3 - b2 * v2 * v3 * rho3 + v1 * v3 * rho2) * T) / (sigma * Sqr(T));
-            d4 = (LogF + (temp3 + b2 * b3 * v2 * v3 * rho3) * T) / (sigma * Sqr(T));
-            price = (F1 * CND(d1) - F2 * CND(d2) - F3 * CND(d3) - X * CND(d4)) * Exp(-r * T);
+            d2 = (LogF + (temp3 - d2 * v2 * v2 + d2 * d3 * v2 * v3 * rho3 - d3 * v2 * v3 * rho3 + v1 * v2 * rho1) * T) / (sigma * Sqr(T));
+            d3 = (LogF + (temp3 - d3 * v3 * v3 + d2 * d3 * v2 * v3 * rho3 - d2 * v2 * v3 * rho3 + v1 * v3 * rho2) * T) / (sigma * Sqr(T));
+            d4 = (LogF + (temp3 + d2 * d3 * v2 * v3 * rho3) * T) / (sigma * Sqr(T));
+            if (cpflg.Equals("c"))
+            {
+                price = F1 * CND(d1) - F2 * CND(d2) - F3 * CND(d3) - X * CND(d4) * Exp(-r * T);
+            }
+            else if (cpflg.Equals("p"))
+            {
+                price =  - F1* CND(-d1) +F2 * CND(-d2) + F3 * CND(-d3) + X * CND(-d4) * Exp(-r * T);
+             }
+            else
+            {
+                price = double.NaN;
+             }
             return price;
         }
 
@@ -44,7 +54,7 @@ namespace OptionPricingLib
                 double r, double b1, double b2, double v1, double v2, double rho, double dS)
         {
             double result = double.NaN;
-            result = (pricer(cpflg, S1 + dS, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho) - pricer(cpflg, S1 - dS, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)) / (2 * dS);
+            result = (Pricer(cpflg, S1 + dS, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho) - pricer(cpflg, S1 - dS, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)) / (2 * dS);
             return result;
         }
 

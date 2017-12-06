@@ -20,6 +20,5 @@ namespace ExcelUDFOptionPricingFunctions
             string info = "1 Add spread option approximation method; 2 Change function names from dnet... to cs...";
             return info;
         }
-
     }
 }

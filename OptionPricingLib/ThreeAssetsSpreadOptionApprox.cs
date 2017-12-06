@@ -7,31 +7,37 @@ using MathNet.Numerics.Distributions;
 
 namespace OptionPricingLib
 {
-    public class SpreadOptionApprox
+    public class ThreeAssetsSpreadOptionApprox
     {
-        public static double pricer(string cpflg, double S1, double S2, double Q1, double Q2, double X, double T,
-                double r, double b1, double b2, double v1, double v2, double rho)
+        public static double pricer(string cpflg, double S1, double S2, double S3, double Q1, double Q2, double Q3, double X, double T,
+                double r, double b1, double b2, double b3, double v1, double v2, double v3, double rho1, double rho2, double rho3)
         {
-            double v;
+            double F1, F2, F3, LogF;
+            double a, b2, b3;
+            double temp1, temp2, temp3;
+            double sigma;
             double S;
-            double d1, d2;
-            double F;
+            double d1, d2, d3 ,d4;
             double price = double.NaN;
-            F = Q2 * S2 * Exp((b2 - r) * T) / (Q2 * S2 * Exp((b2 - r) * T) + X * Exp(-r * T));
-            v = Sqr(v1 * v1 + (v2 * F) * (v2 * F) - 2 * rho * v1 * v2 * F);
-            S = Q1 * S1 * Exp((b1 - r) * T) / (Q2 * S2 * Exp((b2 - r) * T) + X * Exp(-r * T));
-            d1 = (Log(S) + v * v / 2 * T) / (v * Sqr(T));
-            d2 = d1 - v * Sqr(T);
 
-            if (cpflg.Equals("c"))
-            {
-                price = (Q2 * S2 * Exp((b2 - r) * T) + X * Exp(-r * T)) * (S * CND(d1) - CND(d2));
-            }
-            else
-            {
-                price = (Q2 * S2 * Exp((b2 - r) * T) + X * Exp(-r * T)) * (CND(-d2) - S * CND(-d1));
-            }
-                return price;               
+            F1 = Q1 * S1;
+            F2 = Q2 * S2;
+            F3 = Q3 * S3;
+
+            a = F2 + F3 + X;
+            b2 = F2 / a;
+            b3 = F3 / a;
+            temp1 = v1 * v1 + b2 * b2 * v2 * v2 + b3 * b3 * v3 * v3;
+            temp2 = b2 * v1 * v2 * rho1 + b3 * v1 * v3 * rho2 - b2 * b3 * v2 * v3 * rho3;
+            temp3 = 0.5 * (b2 * b2 * v2 * v2 + b3 * b3 * v3 * v3 - v1 * v1);
+            sigma = Sqr(temp1 - 2 * temp2);
+            LogF = Math.Log(F1 / a);
+            d1 = (LogF + (0.5 * temp1 - temp2) * T) / (sigma * Sqr(T));
+            d2 = (LogF + (temp3 - b2 * v2*v2 + b2 * b3 * v2 * v3 * rho3 - b3 * v2 * v3 * rho3 + v1 * v2 * rho1) * T) / (sigma * Sqr(T));
+            d3 = (LogF + (temp3 - b3 * v3*v3 + b2 * b3 * v2 * v3 * rho3 - b2 * v2 * v3 * rho3 + v1 * v3 * rho2) * T) / (sigma * Sqr(T));
+            d4 = (LogF + (temp3 + b2 * b3 * v2 * v3 * rho3) * T) / (sigma * Sqr(T));
+            price = (F1 * CND(d1) - F2 * CND(d2) - F3 * CND(d3) - X * CND(d4)) * Exp(-r * T);
+            return price;
         }
 
         public static double fdaDelta1(string cpflg, double S1, double S2, double Q1, double Q2, double X, double T,
@@ -69,9 +75,9 @@ namespace OptionPricingLib
                                         double r, double b1, double b2, double v1, double v2, double rho, double dS)
         {
             double result = double.NaN;
-            result = S2 / 100 * (pricer(cpflg, S1, S2+dS, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)
+            result = S2 / 100 * (pricer(cpflg, S1, S2 + dS, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)
                     - 2 * pricer(cpflg, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)
-                    + pricer(cpflg, S1, S2-dS, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)) / (dS * dS);
+                    + pricer(cpflg, S1, S2 - dS, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)) / (dS * dS);
             return result;
         }
 
@@ -80,7 +86,7 @@ namespace OptionPricingLib
         {
             double result = double.NaN;
             double dv = 0.01;
-            result = (pricer(cpflg, S1, S2, Q1, Q2, X, T, r, b1, b2, v1 + dv, v2, rho) 
+            result = (pricer(cpflg, S1, S2, Q1, Q2, X, T, r, b1, b2, v1 + dv, v2, rho)
                 - pricer(cpflg, S1, S2, Q1, Q2, X, T, r, b1, b2, v1 - dv, v2, rho)) / 2;
             return result;
         }
@@ -108,7 +114,7 @@ namespace OptionPricingLib
                       double r, double b1, double b2, double v1, double v2, double rho, double dS)
         {
             double result = double.NaN;
-            if(T <= 1 / 365)
+            if (T <= 1 / 365)
             {
                 result = pricer(cpflg, S1, S2, Q1, Q2, X, 0.00001, r, b1, b2, v1, v2, rho) - pricer(cpflg, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho);
             }

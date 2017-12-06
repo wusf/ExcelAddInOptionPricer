@@ -75,8 +75,9 @@
     <Compile Include="MultiAssetSpreadQMCMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolveStrike.cs" />
-    <Compile Include="SpreadOptionApprox.cs" />
+    <Compile Include="TwoAssetsSpreadOptionApprox.cs" />
     <Compile Include="StandardBarrierAnalyticMethod.cs" />
+    <Compile Include="ThreeAssetsSpreadOptionApprox.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

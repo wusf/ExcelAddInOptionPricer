@@ -30,42 +30,42 @@ namespace ExcelUDFOptionPricingFunctions
             double result = double.NaN;
             if (OutPutFlag.Equals("price"))
             {
-                result = OPLib.SpreadOptionApprox.pricer(CallPutFlag, S1, S2, Q1, Q2,  X,  T, r, b1, b2, v1, v2, rho);
+                result = OPLib.TwoAssetsSpreadOptionApprox.pricer(CallPutFlag, S1, S2, Q1, Q2,  X,  T, r, b1, b2, v1, v2, rho);
             }
 
             else if (OutPutFlag.Equals("delta1"))
             {
-                result = OPLib.SpreadOptionApprox.fdaDelta1(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho, dS);
+                result = OPLib.TwoAssetsSpreadOptionApprox.fdaDelta1(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho, dS);
             }
 
             else if (OutPutFlag.Equals("delta2"))
             {
-                result = OPLib.SpreadOptionApprox.fdaDelta2(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho, dS);
+                result = OPLib.TwoAssetsSpreadOptionApprox.fdaDelta2(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho, dS);
             }
 
             else if (OutPutFlag.Equals("gammap1"))
             {
-                result = OPLib.SpreadOptionApprox.fdaGammaP1(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho, dS);
+                result = OPLib.TwoAssetsSpreadOptionApprox.fdaGammaP1(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho, dS);
             }
 
             else if (OutPutFlag.Equals("gammap2"))
             {
-                result = OPLib.SpreadOptionApprox.fdaGammaP2(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho, dS);
+                result = OPLib.TwoAssetsSpreadOptionApprox.fdaGammaP2(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho, dS);
             }
 
             else if (OutPutFlag.Equals("vega1"))
             {
-                result = OPLib.SpreadOptionApprox.fdaVega1(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho, dS);
+                result = OPLib.TwoAssetsSpreadOptionApprox.fdaVega1(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho, dS);
             }
 
             else if (OutPutFlag.Equals("vega2"))
             {
-                result = OPLib.SpreadOptionApprox.fdaVega2(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho, dS);
+                result = OPLib.TwoAssetsSpreadOptionApprox.fdaVega2(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho, dS);
             }
 
             else if (OutPutFlag.Equals("theta"))
             {
-                result = OPLib.SpreadOptionApprox.fdaTheta(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho, dS);
+                result = OPLib.TwoAssetsSpreadOptionApprox.fdaTheta(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho, dS);
             }
 
             else

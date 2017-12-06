@@ -15,7 +15,6 @@ namespace OptionPricingLib
             double F1, F2, F3, LogF;
             double temp1, temp2, temp3;
             double sigma;
-            double S;
             double d1, d2, d3, d4;
             double price = double.NaN;
 
@@ -50,87 +49,135 @@ namespace OptionPricingLib
             return price;
         }
 
-        public static double fdaDelta1(string cpflg, double S1, double S2, double Q1, double Q2, double X, double T,
-                double r, double b1, double b2, double v1, double v2, double rho, double dS)
+        public static double FdDelta1(string cpflg, double S1, double S2, double S3, double Q1, double Q2, double Q3, double X, double T,
+                double r, double b1, double b2, double b3, double v1, double v2, double v3, double rho1, double rho2, double rho3, double dS)
         {
             double result = double.NaN;
-            result = (Pricer(cpflg, S1 + dS, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho) - pricer(cpflg, S1 - dS, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)) / (2 * dS);
+            result = (Pricer(cpflg, S1 + dS, S2, S3, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3) 
+                    - Pricer(cpflg, S1 - dS, S2, S3, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3)) / (2 * dS);
             return result;
         }
 
-        public static double fdaDelta2(string cpflg, double S1, double S2, double Q1, double Q2, double X, double T,
-        double r, double b1, double b2, double v1, double v2, double rho, double dS)
+        public static double FdDelta2(string cpflg, double S1, double S2, double S3, double Q1, double Q2, double Q3, double X, double T,
+                double r, double b1, double b2, double b3, double v1, double v2, double v3, double rho1, double rho2, double rho3, double dS)
         {
             double result = double.NaN;
-            result = (pricer(cpflg, S1, S2 + dS, Q1, Q2, X, T, r, b1, b2, v1, v2, rho) - pricer(cpflg, S1, S2 - dS, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)) / (2 * dS);
+            result = (Pricer(cpflg, S1, S2 + dS, S3, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3)
+                    - Pricer(cpflg, S1, S2 - dS, S3, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3)) / (2 * dS);
+            return result;
+        }
+        public static double FdDelta3(string cpflg, double S1, double S2, double S3, double Q1, double Q2, double Q3, double X, double T,
+        double r, double b1, double b2, double b3, double v1, double v2, double v3, double rho1, double rho2, double rho3, double dS)
+        {
+            double result = double.NaN;
+            result = (Pricer(cpflg, S1, S2, S3 + dS, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3)
+                    - Pricer(cpflg, S1, S2, S3 - dS, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3)) / (2 * dS);
+            return result;
+        }
+      
+        public static double FdGammaP1(string cpflg, double S1, double S2, double S3, double Q1, double Q2, double Q3, double X, double T,
+                double r, double b1, double b2, double b3, double v1, double v2, double v3, double rho1, double rho2, double rho3, double dS)
+        {
+            double result = double.NaN;
+            result = S1 / 100 * (Pricer(cpflg, S1 + dS, S2, S3, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3)
+                - 2 * Pricer(cpflg, S1, S2, S3, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3)
+                + Pricer(cpflg, S1 - dS, S2, S3, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3)) / (dS * dS);
             return result;
         }
 
-        ///ElseIf OutPutFlag = "e1" Then 'Elasticity S1
-        ///    ESpreadApproximation = (SpreadApproximation(CallPutFlag, S1 + dS, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho) - SpreadApproximation(CallPutFlag, S1 - dS, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)) / (2 * dS) * S1 / SpreadApproximation(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)
-        ///ElseIf OutPutFlag = "e2" Then 'Elasticity S2
-        ///     ESpreadApproximation = (SpreadApproximation(CallPutFlag, S1, S2 + dS, Q1, Q2, X, T, r, b1, b2, v1, v2, rho) - SpreadApproximation(CallPutFlag, S1, S2 - dS, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)) / (2 * dS) * S2 / SpreadApproximation(CallPutFlag, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)
-
-        public static double fdaGammaP1(string cpflg, double S1, double S2, double Q1, double Q2, double X, double T,
-                                        double r, double b1, double b2, double v1, double v2, double rho, double dS)
+        public static double FdGammaP2(string cpflg, double S1, double S2, double S3, double Q1, double Q2, double Q3, double X, double T,
+        double r, double b1, double b2, double b3, double v1, double v2, double v3, double rho1, double rho2, double rho3, double dS)
         {
             double result = double.NaN;
-            result = S1 / 100 * (pricer(cpflg, S1 + dS, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)
-                - 2 * pricer(cpflg, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)
-                + pricer(cpflg, S1 - dS, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)) / (dS * dS);
+            result = S1 / 100 * (Pricer(cpflg, S1, S2 + dS, S3, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3)
+                - 2 * Pricer(cpflg, S1, S2, S3, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3)
+                + Pricer(cpflg, S1, S2 - dS, S3, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3)) / (dS * dS);
             return result;
         }
 
-        public static double fdaGammaP2(string cpflg, double S1, double S2, double Q1, double Q2, double X, double T,
-                                        double r, double b1, double b2, double v1, double v2, double rho, double dS)
+        public static double FdGammaP3(string cpflg, double S1, double S2, double S3, double Q1, double Q2, double Q3, double X, double T,
+        double r, double b1, double b2, double b3, double v1, double v2, double v3, double rho1, double rho2, double rho3, double dS)
         {
             double result = double.NaN;
-            result = S2 / 100 * (pricer(cpflg, S1, S2 + dS, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)
-                    - 2 * pricer(cpflg, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)
-                    + pricer(cpflg, S1, S2 - dS, Q1, Q2, X, T, r, b1, b2, v1, v2, rho)) / (dS * dS);
+            result = S1 / 100 * (Pricer(cpflg, S1, S2, S3 + dS, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3)
+                - 2 * Pricer(cpflg, S1, S2, S3, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3)
+                + Pricer(cpflg, S1, S2, S3 - dS, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3)) / (dS * dS);
             return result;
         }
 
-        public static double fdaVega1(string cpflg, double S1, double S2, double Q1, double Q2, double X, double T,
-                                      double r, double b1, double b2, double v1, double v2, double rho, double dS)
+
+        public static double FdVega1(string cpflg, double S1, double S2, double S3, double Q1, double Q2, double Q3, double X, double T,
+        double r, double b1, double b2, double b3, double v1, double v2, double v3, double rho1, double rho2, double rho3, double dS)
         {
             double result = double.NaN;
             double dv = 0.01;
-            result = (pricer(cpflg, S1, S2, Q1, Q2, X, T, r, b1, b2, v1 + dv, v2, rho)
-                - pricer(cpflg, S1, S2, Q1, Q2, X, T, r, b1, b2, v1 - dv, v2, rho)) / 2;
+            result = (Pricer(cpflg, S1, S2, S3 + dS, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1 + dv, v2, v3, rho1, rho2, rho3)
+                - Pricer(cpflg, S1, S2, S3 + dS, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1 - dv, v2, v3, rho1, rho2, rho3)) / 2;
             return result;
         }
 
-        public static double fdaVega2(string cpflg, double S1, double S2, double Q1, double Q2, double X, double T,
-                              double r, double b1, double b2, double v1, double v2, double rho, double dS)
+        public static double FdVega2(string cpflg, double S1, double S2, double S3, double Q1, double Q2, double Q3, double X, double T,
+        double r, double b1, double b2, double b3, double v1, double v2, double v3, double rho1, double rho2, double rho3, double dS)
         {
             double result = double.NaN;
             double dv = 0.01;
-            result = (pricer(cpflg, S1, S2, Q1, Q2, X, T, r, b1, b2, v2 + dv, v2, rho)
-                - pricer(cpflg, S1, S2, Q1, Q2, X, T, r, b1, b2, v2 - dv, v2, rho)) / 2;
+            result = (Pricer(cpflg, S1, S2, S3 + dS, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2 + dv, v3, rho1, rho2, rho3)
+                - Pricer(cpflg, S1, S2, S3 + dS, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2 - dv, v3, rho1, rho2, rho3)) / 2;
             return result;
         }
 
-        public static double fdaCorr(string cpflg, double S1, double S2, double Q1, double Q2, double X, double T,
-                      double r, double b1, double b2, double v1, double v2, double rho, double dS)
+        public static double FdVega3(string cpflg, double S1, double S2, double S3, double Q1, double Q2, double Q3, double X, double T,
+        double r, double b1, double b2, double b3, double v1, double v2, double v3, double rho1, double rho2, double rho3, double dS)
+        {
+            double result = double.NaN;
+            double dv = 0.01;
+            result = (Pricer(cpflg, S1, S2, S3 + dS, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3 + dv, rho1, rho2, rho3)
+                - Pricer(cpflg, S1, S2, S3 + dS, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3 - dv, rho1, rho2, rho3)) / 2;
+            return result;
+        }
+        public static double FdCorr1(string cpflg, double S1, double S2, double S3, double Q1, double Q2, double Q3, double X, double T,
+        double r, double b1, double b2, double b3, double v1, double v2, double v3, double rho1, double rho2, double rho3, double dS)
         {
             double result = double.NaN;
             double dRho = 0.01;
-            result = (pricer(cpflg, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho + dRho) - pricer(cpflg, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho - dRho)) / 2;
+            result = (Pricer(cpflg, S1, S2, S3 + dS, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1 + dRho, rho2, rho3)
+                - Pricer(cpflg, S1, S2, S3 + dS, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1- dRho, rho2, rho3)) / 2;
             return result;
         }
 
-        public static double fdaTheta(string cpflg, double S1, double S2, double Q1, double Q2, double X, double T,
-                      double r, double b1, double b2, double v1, double v2, double rho, double dS)
+        public static double FdCorr2(string cpflg, double S1, double S2, double S3, double Q1, double Q2, double Q3, double X, double T,
+        double r, double b1, double b2, double b3, double v1, double v2, double v3, double rho1, double rho2, double rho3, double dS)
+        {
+            double result = double.NaN;
+            double dRho = 0.01;
+            result = (Pricer(cpflg, S1, S2, S3 + dS, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2 + dRho, rho3)
+                - Pricer(cpflg, S1, S2, S3 + dS, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2 - dRho, rho3)) / 2;
+            return result;
+        }
+
+
+        public static double FdCorr3(string cpflg, double S1, double S2, double S3, double Q1, double Q2, double Q3, double X, double T,
+        double r, double b1, double b2, double b3, double v1, double v2, double v3, double rho1, double rho2, double rho3, double dS)
+        {
+            double result = double.NaN;
+            double dRho = 0.01;
+            result = (Pricer(cpflg, S1, S2, S3 + dS, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3 + dRho)
+                - Pricer(cpflg, S1, S2, S3 + dS, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3 - dRho)) / 2;
+            return result;
+        }
+        public static double FdTheta(string cpflg, double S1, double S2, double S3, double Q1, double Q2, double Q3, double X, double T,
+        double r, double b1, double b2, double b3, double v1, double v2, double v3, double rho1, double rho2, double rho3, double dS)
         {
             double result = double.NaN;
             if (T <= 1 / 365)
             {
-                result = pricer(cpflg, S1, S2, Q1, Q2, X, 0.00001, r, b1, b2, v1, v2, rho) - pricer(cpflg, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho);
+                result = Pricer(cpflg, S1, S2, S3, Q1, Q2, Q3, X, 0.00001, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3)
+                    - Pricer(cpflg, S1, S2, S3, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3);
             }
             else
             {
-                result = pricer(cpflg, S1, S2, Q1, Q2, X, T - 1 / 365, r, b1, b2, v1, v2, rho) - pricer(cpflg, S1, S2, Q1, Q2, X, T, r, b1, b2, v1, v2, rho);
+                result = Pricer(cpflg, S1, S2, S3, Q1, Q2, Q3, X, T-1/365, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3)
+                    - Pricer(cpflg, S1, S2, S3, Q1, Q2, Q3, X, T, r, b1, b2, b3, v1, v2, v3, rho1, rho2, rho3);
             }
             return result;
         }

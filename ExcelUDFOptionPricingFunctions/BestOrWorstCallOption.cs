@@ -11,7 +11,7 @@ namespace ExcelUDFOptionPricingFunctions
     public class BestOrWorstCallOptionQMC
     {
         [ExcelFunction(Description = "Returns multi-asset spread option price and greeks through Quasi Monte-Carlo method")]
-        public static object csBestOrWorstCallOptionQMC([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
+        public static object CsBestOrWorstCallOptionQMC([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
                                [ExcelArgument(Name = "BestWorstFlag", Description = Flag.BestOrWorst)] string BestOrWorstFlag,
                                [ExcelArgument(Name = "S", Description = "Spot price array")] double[] S,
                                [ExcelArgument(Name = "X", Description = "Strike price")] double[] X,

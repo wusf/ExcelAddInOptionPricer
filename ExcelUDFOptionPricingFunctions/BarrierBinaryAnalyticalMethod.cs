@@ -11,7 +11,7 @@ namespace ExcelUDFOptionPricingFunctions
     public class BarrierBinaryAnalyticalMethod
     {
         [ExcelFunction(Description = "Returns standard barrier option price and greeks through analytic method")]
-        public static object csBarrierBinaryNGreeks([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
+        public static object CsBarrierBinaryNGreeks([ExcelArgument(Name = "OutPutFlag", Description = Flag.OutputFlag)] string OutPutFlag,
                                                       [ExcelArgument(Name = "TypeFlag", Description = Flag.BarrierBinaryStyle)] string TypeFlag,
                                                       [ExcelArgument(Name = "S", Description = "Spot price")] double S,
                                                       [ExcelArgument(Name = "x", Description = "Strike price")] double x,

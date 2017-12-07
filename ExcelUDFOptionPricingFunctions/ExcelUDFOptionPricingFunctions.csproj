@@ -57,7 +57,8 @@
     <Compile Include="BSImpVol.cs" />
     <Compile Include="CallPutSpreadBSMethod.cs" />
     <Compile Include="CashOrNothingAnalyticMethod.cs" />
-    <Compile Include="SpreadOptionApprox.cs" />
+    <Compile Include="ThreeAssetSpreadOptionApprox.cs" />
+    <Compile Include="TwoAssetSpreadOptionApprox.cs" />
     <Compile Include="TestBOSFMC.cs" />
     <Compile Include="Flag.cs" />
     <Compile Include="OneTouchDoubleBarrierBinaryAnalyticMethod.cs" />
